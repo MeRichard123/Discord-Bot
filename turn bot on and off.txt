@@ -1,0 +1,11 @@
+in terminal cd to this file:
+
+>>>pm2 start node .
+
+to turn the bot on
+
+>>>pm2 stop node .
+
+//to close the terminal do that ^
+
+else just type node . and don't close terminal 
