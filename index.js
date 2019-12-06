@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 
-const token; 
-
 const PREFIX = "!";
 var version = "version: 1.0.0";
 var valor =
