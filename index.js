@@ -86,9 +86,12 @@ bot.on("message", message => {
         message.reply("Please Captialize");
       }
       if (possibilies.includes(userTeam) === false) {
-        message.reply(
-          "please choose one of the following: Instinct,Mystic,Valor,Rocket  or else use a Capital for the first letter"
-        );
+        const error = new Discord.RichEmbed();
+        error
+          .setTitle("Warning Invalid Number Of Arguments")
+          .addField("Usage:", "!team <team name>")
+          .setColor(red);
+        message.reply(error);
       }
       break;
     case "ping":
@@ -125,35 +128,46 @@ bot.on("message", message => {
           var userTeam = "Instinct";
           var team = insinct;
           var color = yellow;
+          displayEmbed = true;
         }
         if (args[1] === "mystic") {
           var userTeam = "Mystic";
           var team = mystic;
           var color = blue;
+          displayEmbed = true;
         }
         if (args[1] === "valor") {
           var userTeam = "Valor";
           var team = valor;
           var color = red;
+          displayEmbed = true;
         }
         if (args[1] === "rocket") {
           var userTeam = "Rocket";
           var team = rocket;
           var color = white;
+          displayEmbed = true;
         }
       } else {
-        message.reply("please enter your team after embed");
+        displayEmbed = false;
+        const EmbedError = new Discord.RichEmbed()
+          .setTitle("Warning Invalid Number Of Arguments")
+          .addField("Usage", "!embed <team name>")
+          .setColor(red);
+        message.reply(EmbedError);
         var team =
           "https://vignette.wikia.nocookie.net/sonicpokemon/images/9/9d/Pichu.png/revision/latest?cb=20120801034542";
         var color = neutral;
       }
-      const embed = new Discord.RichEmbed()
-        .setTitle("User information")
-        .addField("Player Name", message.author.username)
-        .addField("Player Team", userTeam)
-        .setColor(color)
-        .setThumbnail(team);
-      message.channel.send(embed);
+      if (displayEmbed === true) {
+        const embed = new Discord.RichEmbed()
+          .setTitle("User information")
+          .addField("Player Name", message.author.username)
+          .addField("Player Team", userTeam)
+          .setColor(color)
+          .setThumbnail(team);
+        message.channel.send(embed);
+      }
       break;
 
     case "spam":
