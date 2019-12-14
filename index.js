@@ -116,7 +116,7 @@ bot.on("message", message => {
           return message.reply("Error please define a second argument");
         message.channel.bulkDelete(args[1]);
         break;
-      case "!help":
+      case "help":
         message.channel.send(
           "COMMANDS:\n!ping\n!websites\n!info\n!info version\n!help\n!embed (your pokemon go team)\n!spam\n!invite"
         );
