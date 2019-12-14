@@ -38,9 +38,6 @@ bot.on("guildMemberAdd", member => {
 
 
 bot.on("message", message => {
-  if (!message.startsWith(prefix)) {
-    return;
-  } else {
     let args = message.content.substring(PREFIX.length).split(" ");
 
     switch (args[0]) {
@@ -204,7 +201,6 @@ bot.on("message", message => {
         message.reply("https://discord.gg/9ryrpxU");
         break;
     }
-  }
 });
 
 bot.login(process.env.token);
