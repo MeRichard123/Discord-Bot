@@ -41,7 +41,7 @@ bot.on("message", message => {
     let args = message.content.substring(PREFIX.length).split(" ");
 
     switch (args[0]) {
-      case "team":
+      case "!team":
         let memberRoleIns = message.member.guild.roles.find(
           role => role.name === "Instinct"
         );
@@ -95,7 +95,7 @@ bot.on("message", message => {
           message.reply(error);
         }
         break;
-      case "ping":
+      case "!ping":
         message.reply("pong!");
         //message.channel.send("pong!")
         //reply puts the persons name infront
@@ -111,7 +111,7 @@ bot.on("message", message => {
           message.channel.send("Made by Me_Richard1");
         }
         break;
-      case "clear":
+      case "!clear":
         if (!args[1])
           return message.reply("Error please define a second argument");
         message.channel.bulkDelete(args[1]);
@@ -122,7 +122,7 @@ bot.on("message", message => {
         );
         break;
 
-      case "embed":
+      case "!embed":
         var OnlyAccept = ["instinct", "mystic", "valor", "rocket"];
         if (OnlyAccept.includes(args[1])) {
           if (args[1] === "instinct") {
@@ -171,7 +171,7 @@ bot.on("message", message => {
         }
         break;
 
-      case "spam":
+      case "!spam":
         if (message.channel.name === "spam") {
           try {
             var i;
@@ -197,7 +197,7 @@ bot.on("message", message => {
         }
         break;
 
-      case "invite":
+      case "!invite":
         message.reply("https://discord.gg/9ryrpxU");
         break;
     }
