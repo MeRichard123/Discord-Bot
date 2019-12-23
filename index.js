@@ -165,18 +165,27 @@ END OF ADIMIN INFO COMMANDS
 ================================================================================================
 */
     case "help":
-      if (message.content.startsWith("!")) {
-        const HelpEmbed = new Discord.RichEmbed()
-          .setTitle("__Commands:__")
-          .addField("!ping", "Try this if you're borded")
-          .addField("!websites", "List websites")
-          .addField("!info [none or version]", "Server Info")
-          .addField("Show Help Commands", "!help")
-          .addField("!embed [PoGo team]", "Get Team card:")
-          .addField("!spam [none or word]", "Spamming")
-          .addField("!link", "Server Invite link")
-          .setColor("0x6c5ce7");
-        message.channel.send(HelpEmbed);
+      if (member.role.has("603565962763173891")) {
+        if (message.content.startsWith("!")) {
+          const HelpEmbed = new Discord.RichEmbed()
+            .setTitle("__Commands:__")
+            .addField(`${PREFIX}ping`, "Try this if you're borded")
+            .addField(`${PREFIX}websites`, "List websites")
+            .addField(`${PREFIX}info [none or version]`, "Server Info")
+            .addField("Show Help Commands", `${PREFIX}help`)
+            .addField(`${PREFIX}embed [PoGo team]`, "Get Team card:")
+            .addField(`${PREFIX}spam [none or word]`, "Spamming")
+            .addField(`${PREFIX}link`, "Server Invite link")
+            .setColor("0x6c5ce7");
+          message.channel.send(HelpEmbed);
+        }
+      } else {
+        const errorRole = new Discord.RichEmbed();
+        errorRole
+          .setTitle("You Do Not Have Permission to use this Command")
+          .addField("* Think this is wrong? * Message @admin")
+          .setColor(red);
+        message.reply(errorRole);
       }
       break;
     /*
