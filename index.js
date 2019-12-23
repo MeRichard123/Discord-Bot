@@ -151,9 +151,21 @@ START OF WEBSITE COMMAND
       }
       break;
     case "clear":
-      if (!args[1])
+      if (!args[1]) {
         return message.reply("Error please define a second argument");
-      message.channel.bulkDelete(args[1]);
+      } else {
+        if (message.member.roles.find(r => r.name === "Admin")) {
+          message.channel.bulkDelete(args[1]);
+        } else {
+          const errorRole = new Discord.RichEmbed();
+          errorRole
+            .setTitle("You Do Not Have Permission to use this Command")
+            .addField(`*Think this is wrong?*`, "message @admin")
+            .setColor(red);
+          message.reply(errorRole);
+        }
+      }
+
       break;
     /*
 END OF ADIMIN INFO COMMANDS
@@ -165,28 +177,20 @@ END OF ADIMIN INFO COMMANDS
 ================================================================================================
 */
     case "help":
-      if (member.role.has("603565962763173891")) {
-        if (message.content.startsWith("!")) {
-          const HelpEmbed = new Discord.RichEmbed()
-            .setTitle("__Commands:__")
-            .addField(`${PREFIX}ping`, "Try this if you're borded")
-            .addField(`${PREFIX}websites`, "List websites")
-            .addField(`${PREFIX}info [none or version]`, "Server Info")
-            .addField("Show Help Commands", `${PREFIX}help`)
-            .addField(`${PREFIX}embed [PoGo team]`, "Get Team card:")
-            .addField(`${PREFIX}spam [none or word]`, "Spamming")
-            .addField(`${PREFIX}link`, "Server Invite link")
-            .setColor("0x6c5ce7");
-          message.channel.send(HelpEmbed);
-        }
-      } else {
-        const errorRole = new Discord.RichEmbed();
-        errorRole
-          .setTitle("You Do Not Have Permission to use this Command")
-          .addField("* Think this is wrong? * Message @admin")
-          .setColor(red);
-        message.reply(errorRole);
+      if (message.content.startsWith("!")) {
+        const HelpEmbed = new Discord.RichEmbed()
+          .setTitle("__Commands:__")
+          .addField(`${PREFIX}ping`, "Try this if you're borded")
+          .addField(`${PREFIX}websites`, "List websites")
+          .addField(`${PREFIX}info [none or version]`, "Server Info")
+          .addField("Show Help Commands", `${PREFIX}help`)
+          .addField(`${PREFIX}embed [PoGo team]`, "Get Team card:")
+          .addField(`${PREFIX}spam [none or word]`, "Spamming")
+          .addField(`${PREFIX}link`, "Server Invite link")
+          .setColor("0x6c5ce7");
+        message.channel.send(HelpEmbed);
       }
+
       break;
     /*
 END OF HELP COMMAND 
